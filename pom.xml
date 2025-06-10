@@ -94,6 +94,10 @@
 			<artifactId>commons-lang3</artifactId>
 			<version>3.17.0</version>
 		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-actuator</artifactId>
+		</dependency>
 		<!-- Swagger Annotations -->
 		<dependency>
 			<groupId>io.swagger.core.v3</groupId>
@@ -155,6 +159,33 @@
 								<source>${project.build.directory}/generated-sources/openapi/src/main/java</source>
 							</sources>
 						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+			<plugin>
+				<groupId>org.jacoco</groupId>
+				<artifactId>jacoco-maven-plugin</artifactId>
+				<version>0.8.12</version>
+				<configuration>
+					<excludes>
+						<exclude>org/ing/api/mortgages/mapper/**</exclude>
+						<exclude>org/ing/api/mortgages/entity/**</exclude>
+						<exclude>org/openapitools/api/**</exclude>
+						<exclude>**/model/*</exclude>
+					</excludes>
+				</configuration>
+				<executions>
+					<execution>
+						<goals>
+							<goal>prepare-agent</goal>
+						</goals>
+					</execution>
+					<execution>
+						<id>report</id>
+						<phase>prepare-package</phase>
+						<goals>
+							<goal>report</goal>
+						</goals>
 					</execution>
 				</executions>
 			</plugin>
