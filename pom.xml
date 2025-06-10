@@ -209,6 +209,12 @@
 							<generatorName>spring</generatorName>
 							<library>spring-boot</library>
 							<output>${project.build.directory}/generated-sources/openapi</output>
+							<typeMappings>
+								<typeMapping>DateTime=LocalDateTime</typeMapping>
+							</typeMappings>
+							<importMappings>
+								<importMapping>LocalDateTime=java.time.LocalDateTime</importMapping>
+							</importMappings>
 							<configOptions>
 								<interfaceOnly>true</interfaceOnly>
 								<useSpringBoot3>true</useSpringBoot3>

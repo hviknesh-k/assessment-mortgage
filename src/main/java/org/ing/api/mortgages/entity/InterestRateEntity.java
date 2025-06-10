@@ -6,7 +6,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.math.BigDecimal;
-import java.time.OffsetDateTime;
+import java.time.LocalDateTime;
 
 @Entity
 @Data
@@ -24,6 +24,6 @@ InterestRateEntity {
 
     @Column(name = "last_updated")
     @Temporal(TemporalType.TIMESTAMP)
-    private OffsetDateTime lastUpdated;
+    private LocalDateTime lastUpdated;
 
 }
