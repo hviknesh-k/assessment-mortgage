@@ -13,13 +13,14 @@ import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.OffsetDateTime;
 import java.time.ZoneOffset;
 import java.util.List;
 import java.util.Optional;
 
-import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.BDDMockito.given;
 
 @ExtendWith(MockitoExtension.class)
@@ -37,10 +38,10 @@ public class InterestRateServiceTest {
     public void setup(){
 
         listOfEntities = List.of(
-                new InterestRateDto(10, new BigDecimal(6.70), getDate("2025-04-10")),
-                new InterestRateDto(15, new BigDecimal(5.80), getDate("2025-06-10")),
-                new InterestRateDto(20, new BigDecimal(4.00), getDate("2025-05-11")),
-                new InterestRateDto(30, new BigDecimal(2.50), getDate("2025-05-12")));
+                new InterestRateDto(10, new BigDecimal(6.70), getDate("2025-04-10T11:00:00")),
+                new InterestRateDto(15, new BigDecimal(5.80), getDate("2025-06-10T11:00:00")),
+                new InterestRateDto(20, new BigDecimal(4.00), getDate("2025-05-11T11:00:00")),
+                new InterestRateDto(30, new BigDecimal(2.50), getDate("2025-05-12T11:00:00")));
     }
 
     @Test
@@ -64,10 +65,7 @@ public class InterestRateServiceTest {
 
     }
 
-    private OffsetDateTime getDate(String date) {
-        LocalDate localDate = LocalDate.parse(date);
-        return localDate
-                .atStartOfDay()
-                .atOffset(ZoneOffset.UTC);
+    private LocalDateTime getDate(String date) {
+        return LocalDateTime.parse(date);
     }
 }
