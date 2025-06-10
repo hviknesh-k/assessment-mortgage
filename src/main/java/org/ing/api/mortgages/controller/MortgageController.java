@@ -20,13 +20,14 @@ import java.math.BigDecimal;
 @AllArgsConstructor
 public class MortgageController {
 
-    MortgageService mortgageService;
+    private final MortgageService mortgageService;
 
     /*
     API endpoint to calculate monthly costs and eligibility for mortgage
      */
     @PostMapping("/mortgage-check")
     ResponseEntity<MortgageResponse> getMortgageDetails(@Validated @RequestBody MortgageRequest apiRequest) {
+        log.debug("Initiating process to calculate mortgage rates");
         BigDecimal monthlyCosts = mortgageService.getMonthlyCosts(apiRequest);
         return ResponseEntity.ok()
                 .body(MortgageResponse.builder().

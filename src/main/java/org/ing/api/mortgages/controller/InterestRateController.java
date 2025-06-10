@@ -18,13 +18,14 @@ import java.util.List;
 @AllArgsConstructor
 public class InterestRateController {
 
-    InterestRateService interestRateService;
+    private final InterestRateService interestRateService;
 
     /*
     API endpoint to fetch all existing interest rates from database
      */
     @GetMapping("/interest-rates")
     public ResponseEntity<List<InterestRate>> getAllInterestRates() {
+        log.debug("Initiating process to fetch all interest rates");
         List<InterestRate> interestRates = InterestRateMapper.INTEREST_RATE_MAPPER.fromDtoToModel(interestRateService.getAllInterestRate());
         return ResponseEntity.ok().body(interestRates);
     }

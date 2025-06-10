@@ -61,11 +61,13 @@ public class MortgageServiceImpl implements MortgageService {
      */
     private void performValidation(MortgageRequest request) {
         if (request.getLoanValue().compareTo(request.getHomeValue()) > 0) {
+            log.error("Loan value higher than home value");
             throw new MortgageValidationException(ErrorCode.HIGH_MORTGAGE_REQUEST);
         }
-
-        if (request.getLoanValue()
-                .compareTo(request.getIncome().multiply(BigDecimal.valueOf(SALARY_THRESHOLD))) > 0) {
+        BigDecimal salaryThreshold = request.getIncome().multiply(BigDecimal.valueOf(SALARY_THRESHOLD));
+        //Requested loan value should not exceed N times the salary
+        if (request.getLoanValue().compareTo(salaryThreshold) > 0) {
+            log.error("Salary threshold {} not met, loan amount {}", salaryThreshold, request.getLoanValue());
             throw new MortgageValidationException(ErrorCode.INSUFFICIENT_INCOME);
         }
 
