@@ -44,6 +44,13 @@ To build the project execute the following command:
   ./mvnw clean install
 ```
 
+If issue in above command then make sure to install maven on the your working machine and try below commands
+
+```bash
+  mvn clean install
+  mvn spring-boot:run
+```
+
 ### Running on Docker
 
 Build the docker file on project repo
@@ -63,12 +70,12 @@ Launch docker container using
   docker run -p 8080:8080 spring-boot-assessment
 ```
 
+## Testing Application
+
+Postman collection is added to the repo
+
 ## Scope for Improvements
 
 * Having a distributed caching like redis to serve GET endpoint response
 * Sort out jacoco file exclusions and improve code coverage
-* 
-
-## Testing Application
-
-Postman collection is added to the repo
+* Implement security framwork for user authentications etc

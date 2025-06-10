@@ -1,7 +1,5 @@
 package org.ing.api.mortgages.mapper;
 
-
-
 import org.ing.api.mortgages.dta.InterestRateDto;
 import org.mapstruct.Mapper;
 import org.mapstruct.factory.Mappers;

@@ -14,10 +14,7 @@ import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 
 import java.math.BigDecimal;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.time.OffsetDateTime;
-import java.time.ZoneOffset;
 import java.util.List;
 
 import static org.mockito.BDDMockito.given;
@@ -28,7 +25,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static stubs.InterestRateResponseSamples.INTEREST_RATE_VALID_RESPONSE;
 
 @WebMvcTest(InterestRateController.class)
-public class InterestRateControllerTest {
+class InterestRateControllerTest {
 
 
     @Autowired
@@ -40,7 +37,7 @@ public class InterestRateControllerTest {
     List<InterestRateDto> listOfEntities;
 
     @BeforeEach
-    public void setup(){
+    void setup(){
 
         listOfEntities = List.of(
                 new InterestRateDto(10, new BigDecimal(6.70), getDate("2025-04-10T00:00:00")),
@@ -51,7 +48,7 @@ public class InterestRateControllerTest {
 
     @Test
     @DisplayName("InterestRateController : Validate GET endpoint to fetch all available interest rates")
-    public void test_fetch_all_interest_rates() throws Exception {
+    void test_fetch_all_interest_rates() throws Exception {
         given(interestRateService.getAllInterestRate()).willReturn(listOfEntities);
         mockMvc.perform(get("/api/interest-rates")
                         .contentType(MediaType.APPLICATION_JSON))

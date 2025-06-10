@@ -20,14 +20,10 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import org.openapitools.model.MortgageRequest;
 
 import java.math.BigDecimal;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.time.OffsetDateTime;
-import java.time.ZoneOffset;
 import java.util.List;
 import java.util.stream.Stream;
 
-import static org.ing.api.mortgages.exception.ErrorCode.MISSING_MATURITY_MAPPING;
 import static org.ing.api.mortgages.exception.ErrorCode.SERVER_ERROR;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
@@ -53,7 +49,7 @@ class MortgageServiceTest {
     }
 
     @BeforeEach
-    public void setup(){
+    void setup(){
         listOfEntities = List.of(
                 new InterestRateDto(10, new BigDecimal(6.70), getDate("2025-04-10T11:00:00")),
                 new InterestRateDto(15, new BigDecimal(5.80), getDate("2025-06-10T11:00:00")),

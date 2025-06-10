@@ -12,19 +12,16 @@ import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.math.BigDecimal;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.time.OffsetDateTime;
-import java.time.ZoneOffset;
 import java.util.List;
 import java.util.Optional;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.BDDMockito.given;
 
 @ExtendWith(MockitoExtension.class)
-public class InterestRateServiceTest {
+class InterestRateServiceTest {
 
     @InjectMocks
     private InterestRateServiceImpl interestRateService;
@@ -35,7 +32,7 @@ public class InterestRateServiceTest {
     List<InterestRateDto> listOfEntities;
 
     @BeforeEach
-    public void setup(){
+    void setup(){
 
         listOfEntities = List.of(
                 new InterestRateDto(10, new BigDecimal(6.70), getDate("2025-04-10T11:00:00")),
@@ -46,7 +43,7 @@ public class InterestRateServiceTest {
 
     @Test
     @DisplayName("InterestRateService : Verify whether saved interest rates are fetched")
-    public void test_get_all_interest_rates() {
+    void test_get_all_interest_rates() {
         given(interestRateRepository.findAllBy()).willReturn(listOfEntities);
         List<InterestRateDto> interestRates = interestRateService.getAllInterestRate();
         assertThat(interestRates).isNotNull();

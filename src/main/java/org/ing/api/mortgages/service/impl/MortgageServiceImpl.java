@@ -1,7 +1,5 @@
 package org.ing.api.mortgages.service.impl;
 
-
-
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.ing.api.mortgages.dta.InterestRateDto;
@@ -45,8 +43,7 @@ public class MortgageServiceImpl implements MortgageService {
         BigDecimal numerator = ratePerMonth(interestRatePerMonth).multiply(calculateRatePower(interestRatePerMonth, request.getMaturityPeriod()));
         BigDecimal denominator = calculateRatePower(interestRatePerMonth, request.getMaturityPeriod()).subtract(BigDecimal.ONE);
         BigDecimal ratio = numerator.divide(denominator, ROUND_OFF_12, RoundingMode.HALF_UP);
-        BigDecimal monthlyCosts = request.getLoanValue().multiply(ratio).setScale(2, RoundingMode.HALF_UP);
-        return monthlyCosts;
+        return request.getLoanValue().multiply(ratio).setScale(2, RoundingMode.HALF_UP);
     }
 
     private static BigDecimal ratePerMonth(final BigDecimal rate) {
