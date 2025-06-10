@@ -6,4 +6,5 @@ import java.util.List;
 
 public interface InterestRateService {
     List<InterestRateDto> getAllInterestRate();
+    InterestRateDto getRateForMaturity(int interestRate);
 }
